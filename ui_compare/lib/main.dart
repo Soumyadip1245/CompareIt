@@ -9,6 +9,7 @@ void main() {
       title: "CompareIt",
       debugShowCheckedModeBanner: false,
       routes: {'/login': (context) => const Login()},
+      theme: ThemeData(primarySwatch: Colors.purple),
     ),
   );
 }
