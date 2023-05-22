@@ -21,7 +21,7 @@ class _LandingState extends State<Landing> {
     return Scaffold(
       body: Consumer<UserProvider>(builder: (context, data, child) {
         return Container(
-          color: const Color(0xFF9AA0FC),
+          color: const Color(0xFF5d69b3),
           child: Column(
             children: [
               Padding(

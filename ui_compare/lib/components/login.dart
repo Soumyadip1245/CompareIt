@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        color: Color(0xFF9AA0FC),
+        color: const Color(0xFF5d69b3),
         height: height,
         child: Container(
           child: Column(
@@ -122,7 +122,11 @@ class _LoginState extends State<Login> {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextDesign(text: "Login", size: 25),
+                          const TextDesign(
+                            text: "Login",
+                            size: 40,
+                            bold: "y",
+                          ),
                           const SizedBox(
                             height: 10,
                           ),
@@ -162,13 +166,13 @@ class _LoginState extends State<Login> {
                                     loginbutton();
                                   }
                                 },
-                                child: TextDesign(
+                                child: const TextDesign(
                                   text: "Login",
                                   size: 20,
                                   color: Colors.white,
                                 )),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -186,7 +190,7 @@ class _LoginState extends State<Login> {
                                     registerbutton();
                                   }
                                 },
-                                child: TextDesign(
+                                child: const TextDesign(
                                   text: "Register",
                                   size: 20,
                                   color: Colors.white,
@@ -195,7 +199,7 @@ class _LoginState extends State<Login> {
                           const SizedBox(
                             height: 20,
                           ),
-                          TextDesign(text: "OR", size: 28),
+                          const TextDesign(text: "OR", size: 28),
                           const SizedBox(
                             height: 20,
                           ),

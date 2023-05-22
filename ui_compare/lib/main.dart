@@ -19,7 +19,7 @@ Future<void> main() async {
           '/cart': (context) => const Cart()
         },
         theme: ThemeData(
-            primarySwatch: const MaterialColor(0xFF9AA0FC, <int, Color>{
+            primarySwatch: const MaterialColor(0xFF5d69b3, <int, Color>{
           50: Color(0xFFECEFF1),
           100: Color(0xFFC5CAE9),
           200: Color(0xFF9AA0FC),
