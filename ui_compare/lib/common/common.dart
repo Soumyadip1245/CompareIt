@@ -19,3 +19,7 @@ export 'package:ui_compare/components/compare.dart';
 export 'package:ui_compare/components/order.dart';
 export 'package:ui_compare/components/payment.dart';
 export 'package:ui_compare/components/shop.dart';
+export '../components/shop/clothing.dart';
+export '../components/shop/ecommerce.dart';
+export '../components/shop/grocery.dart';
+export '../common/shopcards.dart';
