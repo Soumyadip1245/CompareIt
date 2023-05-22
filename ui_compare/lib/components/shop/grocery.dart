@@ -10,7 +10,7 @@ class Grocery extends StatefulWidget {
 class _GroceryState extends State<Grocery> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Text("Hello"),
     );
   }
