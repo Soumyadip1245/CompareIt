@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'common.dart';
 
 class TextInput extends StatefulWidget {
   final IconData? icon;
   final String text;
   final TextEditingController? controller;
-  const TextInput({required this.text, this.icon, this.controller});
+  TextInput({required this.text, this.icon, this.controller});
 
   @override
   State<TextInput> createState() => _TextInputState();

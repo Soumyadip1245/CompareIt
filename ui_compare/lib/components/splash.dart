@@ -5,7 +5,7 @@ class Splash extends StatelessWidget {
     super.key,
   });
   Future<void> gettimer(BuildContext context) async {
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushNamed(context, '/login');
     });
   }
@@ -15,9 +15,12 @@ class Splash extends StatelessWidget {
     gettimer(context);
 
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child: Container(
+          color: const Color(0xFFFFFFFF),
+          width: width,
           height: height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -27,9 +30,16 @@ class Splash extends StatelessWidget {
                 'assests/images/main.jpg',
                 fit: BoxFit.cover,
               ),
-              Text("CompareIt", style: heading),
+              const TextDesign(
+                text: "CompareIt",
+                size: 40,
+                bold: "y",
+              ),
               const SizedBox(height: 10),
-              Text("Compare prices, save money!", style: text),
+              const TextDesign(
+                  text: "Compare prices, save money!",
+                  size: 20,
+                  color: Colors.grey),
               const SizedBox(height: 40),
               const CircularProgressIndicator(
                 color: Colors.purple,

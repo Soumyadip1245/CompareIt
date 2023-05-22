@@ -1,11 +1,26 @@
 import 'common.dart';
 
-TextStyle heading = GoogleFonts.ubuntu(
-  fontSize: 48,
-  fontWeight: FontWeight.bold,
-);
-TextStyle textheading = GoogleFonts.ubuntu(
-    fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black);
+class TextDesign extends StatelessWidget {
+  final String text;
+  final double size;
+  final Color? color;
+  final String? bold;
 
-TextStyle text = GoogleFonts.ubuntu(fontSize: 20, color: Colors.grey);
-TextStyle buttontext = GoogleFonts.ubuntu(fontSize: 25, color: Colors.white);
+  const TextDesign({
+    required this.text,
+    required this.size,
+    this.color,
+    this.bold,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.ubuntu(
+        fontSize: size,
+        color: color,
+        fontWeight: bold == "y" ? FontWeight.bold : FontWeight.normal,
+      ),
+    );
+  }
+}

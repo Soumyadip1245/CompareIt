@@ -1,7 +1,5 @@
 import 'package:ui_compare/common/common.dart';
 
-import '../common/textfield.dart';
-
 class Login extends StatefulWidget {
   const Login({
     super.key,
@@ -15,9 +13,81 @@ class _LoginState extends State<Login> {
   var accountController = TextEditingController();
   var passwordController = TextEditingController();
 
-  void loginbutton() {
-    String accountEmail = accountController.text.toString();
-    String accountPassword = passwordController.text.toString();
+  final GoogleSignIn googlesignin = GoogleSignIn();
+  final auth = FirebaseAuth.instance;
+  Future<void> loginbutton() async {
+    auth
+        .signInWithEmailAndPassword(
+            email: accountController.text, password: passwordController.text)
+        .then((value) => {
+              QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: "User Authenticated",
+              ),
+              Future.delayed(const Duration(seconds: 5), () {
+                Navigator.pushNamed(context, '/landing');
+              }),
+              Provider.of<UserProvider>(context, listen: false).setUserData(
+                  accountController.text, accountController.text.split('@')[0]),
+              clear(),
+            })
+        .catchError((e) => {
+              QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.error,
+                  title: 'Oops...',
+                  text: 'User Not Found In Our Database',
+                  autoCloseDuration: const Duration(seconds: 5)),
+              clear()
+            });
+  }
+
+  Future<void> registerbutton() async {
+    print("Hello");
+    auth
+        .createUserWithEmailAndPassword(
+            email: accountController.text, password: passwordController.text)
+        .then((value) => {
+              QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.success,
+                  text: 'Registration Successful',
+                  showCancelBtn: false,
+                  autoCloseDuration: const Duration(seconds: 5)),
+              clear()
+            })
+        .catchError((e) => {
+              QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.error,
+                  title: 'Oops...',
+                  text: 'User Cannot Be Registered',
+                  showCancelBtn: false,
+                  autoCloseDuration: const Duration(seconds: 5)),
+              clear()
+            });
+  }
+
+  void signin() {
+    googlesignin
+        .signIn()
+        .then((value) => {
+              if (value != null)
+                {
+                  Provider.of<UserProvider>(context, listen: false)
+                      .setUserData(value.email, value.displayName ?? ""),
+                  Future.delayed(const Duration(seconds: 5), () {
+                    Navigator.pushNamed(context, '/landing');
+                  })
+                }
+            })
+        .catchError((e) => {print(e)});
+  }
+
+  void clear() {
+    accountController.clear();
+    passwordController.clear();
   }
 
   @override
@@ -27,7 +97,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        color: Colors.purple,
+        color: Color(0xFF9AA0FC),
         height: height,
         child: Container(
           child: Column(
@@ -40,8 +110,8 @@ class _LoginState extends State<Login> {
               Expanded(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
                   ),
                   child: Container(
                     width: double.infinity,
@@ -52,10 +122,7 @@ class _LoginState extends State<Login> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            "Login",
-                            style: textheading,
-                          ),
+                          TextDesign(text: "Login", size: 25),
                           const SizedBox(
                             height: 10,
                           ),
@@ -90,20 +157,45 @@ class _LoginState extends State<Login> {
                                         left: 70,
                                         right: 70)),
                                 onPressed: () {
-                                  loginbutton();
+                                  if (accountController.text.isNotEmpty &&
+                                      passwordController.text.length > 6) {
+                                    loginbutton();
+                                  }
                                 },
-                                child: Text(
-                                  "Login",
-                                  style: buttontext,
+                                child: TextDesign(
+                                  text: "Login",
+                                  size: 20,
+                                  color: Colors.white,
+                                )),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: width * 0.8,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.only(
+                                        top: 10,
+                                        bottom: 10,
+                                        left: 70,
+                                        right: 70)),
+                                onPressed: () {
+                                  if (accountController.text.isNotEmpty &&
+                                      passwordController.text.length > 6) {
+                                    registerbutton();
+                                  }
+                                },
+                                child: TextDesign(
+                                  text: "Register",
+                                  size: 20,
+                                  color: Colors.white,
                                 )),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            "OR",
-                            style: textheading,
-                          ),
+                          TextDesign(text: "OR", size: 28),
                           const SizedBox(
                             height: 20,
                           ),
@@ -119,7 +211,9 @@ class _LoginState extends State<Login> {
                                   width: 1,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                signin();
+                              },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
