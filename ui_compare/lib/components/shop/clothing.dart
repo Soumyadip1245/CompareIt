@@ -1,15 +1,93 @@
 import '../../common/common.dart';
 
 class Clothing extends StatefulWidget {
-  const Clothing({super.key});
+  final TextEditingController? search;
+  const Clothing({this.search});
 
   @override
   State<Clothing> createState() => _ClothingState();
 }
 
 class _ClothingState extends State<Clothing> {
+  List<dynamic> color = [
+    const Color(0xFFFFFB7882),
+    const Color(0xFFFF3d82AE),
+    const Color(0xFFFFD48984),
+    const Color(0xFFFFE6B398),
+  ];
+  List<dynamic> ecommerceData = [];
+  void initState() {
+    _filterProducts();
+  }
+
+  void _filterProducts() {
+    if (widget.search != null && widget.search!.text.isNotEmpty) {
+      final searchQuery = widget.search!.text.toLowerCase();
+      ecommerceData = ShopData()
+          .data
+          .where((product) =>
+              product['category'] == 'Clothing' &&
+              product['name'].toString().toLowerCase().contains(searchQuery))
+          .toList();
+    } else {
+      ecommerceData = ShopData()
+          .data
+          .where((product) => product['category'] == 'Clothing')
+          .toList();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text("Hi"));
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
+        crossAxisCount: 2,
+        childAspectRatio: 0.8,
+      ),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: ecommerceData.length,
+      itemBuilder: (BuildContext context, int index) {
+        var color1 = color[index % color.length];
+        var product = ecommerceData[index];
+
+        return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/product',
+                arguments: [product, color1]);
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(40),
+                height: 212,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: color1.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Image.network(
+                  product['image'],
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextDesign(
+                text: product['name'],
+                size: 15,
+                color: Colors.grey,
+              ),
+              TextDesign(
+                text: "Rs. ${product['price']}",
+                size: 15,
+                color: Colors.black,
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

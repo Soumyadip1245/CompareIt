@@ -1,3 +1,5 @@
+import 'package:ui_compare/common/product.dart';
+
 import 'common/common.dart';
 
 Future<void> main() async {
@@ -16,7 +18,8 @@ Future<void> main() async {
           '/shop': (context) => const Shop(),
           '/order': (context) => const Order(),
           '/payment': (context) => const Payment(),
-          '/cart': (context) => const Cart()
+          '/cart': (context) => const Cart(),
+          '/product': (context) => const Product(),
         },
         theme: ThemeData(
             primarySwatch: const MaterialColor(0xFF5d69b3, <int, Color>{
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Splash(),
+      body: Shop(),
     );
   }
 }

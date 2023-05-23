@@ -4,7 +4,8 @@ class TextInput extends StatefulWidget {
   final IconData? icon;
   final String text;
   final TextEditingController? controller;
-  TextInput({required this.text, this.icon, this.controller});
+  final Function(String)? onChanged;
+  TextInput({required this.text, this.icon, this.controller, this.onChanged});
 
   @override
   State<TextInput> createState() => _TextInputState();
@@ -24,6 +25,7 @@ class _TextInputState extends State<TextInput> {
               padding:
                   const EdgeInsets.only(top: 5, right: 15, left: 15, bottom: 5),
               child: TextField(
+                onChanged: widget.onChanged,
                 controller: widget.controller,
                 decoration: InputDecoration(
                     prefixIcon: widget.icon != null ? Icon(widget.icon) : null,

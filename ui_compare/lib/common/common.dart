@@ -23,3 +23,4 @@ export '../components/shop/clothing.dart';
 export '../components/shop/ecommerce.dart';
 export '../components/shop/grocery.dart';
 export '../common/shopcards.dart';
+export '../../state/shopchange.dart';

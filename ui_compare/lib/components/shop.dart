@@ -15,7 +15,7 @@ class _ShopState extends State<Shop> {
     const Color(0xFFFFD48984),
     const Color(0xFFFFE6B398),
   ];
-
+  var searchcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -32,7 +32,7 @@ class _ShopState extends State<Shop> {
                     Icons.arrow_back,
                     size: 28,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Badge(
                     child: InkWell(
                       onTap: () {},
@@ -53,7 +53,7 @@ class _ShopState extends State<Shop> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               const TextDesign(
@@ -64,11 +64,15 @@ class _ShopState extends State<Shop> {
               TextInput(
                 text: "Search Products",
                 icon: Icons.search,
+                controller: searchcontroller,
+                onChanged: (value) {
+                  setState(() {});
+                },
               ),
               const SizedBox(height: 10),
-              TabBar(
+              const TabBar(
                 labelColor: Colors.black,
-                tabs: const [
+                tabs: [
                   Tab(text: "Ecommerce"),
                   Tab(text: "Grocery"),
                   Tab(text: "Clothing"),
@@ -78,9 +82,12 @@ class _ShopState extends State<Shop> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    SingleChildScrollView(child: Ecommerce()),
-                    SingleChildScrollView(child: Text("Hello")),
-                    SingleChildScrollView(child: Text("Hello")),
+                    SingleChildScrollView(
+                        child: Ecommerce(search: searchcontroller)),
+                    SingleChildScrollView(
+                        child: Grocery(search: searchcontroller)),
+                    SingleChildScrollView(
+                        child: Clothing(search: searchcontroller)),
                   ],
                 ),
               ),
