@@ -118,7 +118,7 @@ class _ProductState extends State<Product> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 70,
+                        height: 40,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),

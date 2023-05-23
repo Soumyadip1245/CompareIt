@@ -105,7 +105,7 @@ class _CartState extends State<Cart> {
                                               TextDesign(
                                                 text:
                                                     "${data.list[index]['name']}",
-                                                size: 17,
+                                                size: 20,
                                                 color: Colors.black,
                                               ),
                                               const SizedBox(
@@ -114,8 +114,52 @@ class _CartState extends State<Cart> {
                                               TextDesign(
                                                 text:
                                                     "Rs. ${data.list[index]['price'] * data.list[index]['count']}",
-                                                size: 14,
+                                                size: 18,
                                                 color: Colors.grey,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          data.increement(
+                                                              index);
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.add)),
+                                                    Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 5,
+                                                                horizontal: 10),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            color: Colors.grey),
+                                                        child: TextDesign(
+                                                          text:
+                                                              '${data.list[index]['count']}',
+                                                          size: 20,
+                                                          color: Colors.white,
+                                                        )),
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          data.decreement(
+                                                              index);
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.remove)),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -124,42 +168,7 @@ class _CartState extends State<Cart> {
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {
-                                                      data.increement(index);
-                                                    },
-                                                    icon:
-                                                        const Icon(Icons.add)),
-                                                Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 5,
-                                                        horizontal: 10),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        color: Colors.grey),
-                                                    child: TextDesign(
-                                                      text:
-                                                          '${data.list[index]['count']}',
-                                                      size: 20,
-                                                      color: Colors.white,
-                                                    )),
-                                                IconButton(
-                                                    onPressed: () {
-                                                      data.decreement(index);
-                                                    },
-                                                    icon: const Icon(
-                                                        Icons.remove)),
-                                              ],
-                                            ),
-                                          ],
+                                          children: [],
                                         )
                                       ],
                                     ),
