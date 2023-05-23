@@ -34,18 +34,23 @@ class _LandingState extends State<Landing> {
                       color: Colors.white,
                     ),
                     const Spacer(),
-                    Badge(
-                      // badgeColor: Colors.red,
-                      child: InkWell(
-                        onTap: () {},
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/cart');
-                          },
-                          child: const Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 35,
-                            color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      child: Badge(
+                        // badgeColor: Colors.red,
+                        child: InkWell(
+                          onTap: () {},
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/cart');
+                            },
+                            child: const Icon(
+                              Icons.shopping_bag_outlined,
+                              size: 35,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

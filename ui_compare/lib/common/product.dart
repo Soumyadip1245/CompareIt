@@ -1,7 +1,7 @@
 import 'package:ui_compare/common/common.dart';
 
 class Product extends StatefulWidget {
-  const Product({
+  Product({
     super.key,
   });
 
@@ -10,13 +10,18 @@ class Product extends StatefulWidget {
 }
 
 class _ProductState extends State<Product> {
+  int count = 1;
   @override
   Widget build(BuildContext context) {
     var products = ModalRoute.of(context)?.settings.arguments as List<dynamic>?;
     print(products);
     Map<String, dynamic> map = products![0];
+    CartState countState = Provider.of<CartState>(context);
+    String productId = map['id'];
+
     return Scaffold(
-      body: Container(
+        body: Consumer<CartState>(builder: (context, cartState, child) {
+      return Container(
         color: products[1],
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +33,6 @@ class _ProductState extends State<Product> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // When navigating back to the previous page, clear the arguments
                       Navigator.pop(context, null);
                     },
                     child: Icon(
@@ -38,10 +42,15 @@ class _ProductState extends State<Product> {
                     ),
                   ),
                   Spacer(),
-                  Icon(
-                    Icons.shopping_cart,
-                    size: 28,
-                    color: Colors.white,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                    child: Icon(
+                      Icons.shopping_cart,
+                      size: 28,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),
@@ -124,7 +133,12 @@ class _ProductState extends State<Product> {
                       child: Row(
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                countState.increment(productId);
+                                map['count'] = countState.getCount(productId);
+                              });
+                            },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
                                 Colors.white,
@@ -145,8 +159,8 @@ class _ProductState extends State<Product> {
                           const SizedBox(
                             width: 10,
                           ),
-                          const TextDesign(
-                            text: "01",
+                          TextDesign(
+                            text: "${countState.getCount(productId)}",
                             size: 25,
                             color: Colors.black,
                           ),
@@ -154,7 +168,12 @@ class _ProductState extends State<Product> {
                             width: 10,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                countState.decrement(productId);
+                                map['count'] = countState.getCount(productId);
+                              });
+                            },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
                                 Colors.white,
@@ -180,7 +199,9 @@ class _ProductState extends State<Product> {
                       child: Container(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            cartState.addCart(map);
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                               products[1],
@@ -188,8 +209,7 @@ class _ProductState extends State<Product> {
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    20), // Adjust the value as needed
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                           ),
@@ -207,7 +227,7 @@ class _ProductState extends State<Product> {
             ),
           ],
         ),
-      ),
-    );
+      );
+    }));
   }
 }

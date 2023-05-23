@@ -10,7 +10,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "This stylish shirt is perfect for any occasion. It is made from high-quality materials and offers a comfortable fit. Whether you're dressing up for a formal event or keeping it casual, this shirt will elevate your look.",
       "price": 2700,
-      "image": "https://i.imgur.com/MecDeEY.png"
+      "image": "https://i.imgur.com/MecDeEY.png",
+      "count": 1
     },
     {
       "id": "2",
@@ -19,7 +20,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Stay warm and stylish with this trendy jacket. It features a modern design, durable construction, and comfortable fit. Perfect for cool weather and outdoor activities.",
       "price": 3500,
-      "image": "https://i.imgur.com/WOFyPoR.png"
+      "image": "https://i.imgur.com/WOFyPoR.png",
+      "count": 1
     },
     {
       "id": "3",
@@ -28,7 +30,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "These classic jeans are a wardrobe staple. Made from high-quality denim, they offer both style and comfort. Suitable for casual and semi-formal occasions.",
       "price": 2000,
-      "image": "https://i.imgur.com/sip5cQQ.png"
+      "image": "https://i.imgur.com/sip5cQQ.png",
+      "count": 1
     },
     {
       "id": "4",
@@ -37,7 +40,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "This comfortable t-shirt is perfect for everyday wear. It's made from soft cotton and offers a relaxed fit. Versatile and easy to style.",
       "price": 800,
-      "image": "https://i.imgur.com/orLqVk4.png"
+      "image": "https://i.imgur.com/orLqVk4.png",
+      "count": 1
     },
     {
       "id": "5",
@@ -46,7 +50,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Stay cool and comfortable with these versatile shorts. They are made from lightweight fabric and feature an adjustable waistband. Ideal for casual outings and warm weather.",
       "price": 1200,
-      "image": "https://i.imgur.com/ZEHl5Rf.png"
+      "image": "https://i.imgur.com/ZEHl5Rf.png",
+      "count": 1
     },
 
     // Ecommerce
@@ -57,7 +62,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Experience the latest technology with this advanced smartphone. It features a high-resolution display, powerful processor, and innovative camera capabilities. Stay connected and capture moments with style.",
       "price": 1500,
-      "image": "https://i.imgur.com/qek83OR.png"
+      "image": "https://i.imgur.com/qek83OR.png",
+      "count": 1
     },
     {
       "id": "7",
@@ -66,7 +72,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Boost your productivity with this reliable and high-performance laptop. It offers a fast processor, ample storage space, and stunning graphics. Perfect for work, entertainment, and creative tasks.",
       "price": 2500,
-      "image": "https://i.imgur.com/wgyT69O.png"
+      "image": "https://i.imgur.com/wgyT69O.png",
+      "count": 1
     },
     {
       "id": "8",
@@ -75,7 +82,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Immerse yourself in superior sound quality with these premium headphones. They provide exceptional audio clarity, comfort, and wireless connectivity. Elevate your music and multimedia experience.",
       "price": 300,
-      "image": "https://i.imgur.com/3Hveowm.png"
+      "image": "https://i.imgur.com/3Hveowm.png",
+      "count": 1
     },
     {
       "id": "9",
@@ -84,7 +92,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Monitor your health and track your fitness goals with this advanced fitness tracker. It offers accurate activity tracking, heart rate monitoring, and smart notifications. Stay motivated and achieve your fitness milestones.",
       "price": 100,
-      "image": "https://i.imgur.com/Mpi8B5L.png"
+      "image": "https://i.imgur.com/Mpi8B5L.png",
+      "count": 1
     },
     {
       "id": "10",
@@ -93,7 +102,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Bring the power of voice assistance to your home with this smart speaker. It allows you to play music, control smart devices, and get information with just your voice. Enjoy convenience and a connected lifestyle.",
       "price": 80,
-      "image": "https://i.imgur.com/F1rYohv.png"
+      "image": "https://i.imgur.com/F1rYohv.png",
+      "count": 1
     },
 
     // Grocery
@@ -104,7 +114,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Enjoy the crisp and refreshing taste of these juicy apples. They are packed with essential nutrients and make a healthy snack. Add them to salads, desserts, or enjoy them on their own.",
       "price": 2,
-      "image": "https://cdn-icons-png.flaticon.com/512/415/415733.png"
+      "image": "https://cdn-icons-png.flaticon.com/512/415/415733.png",
+      "count": 1
     },
     {
       "id": "12",
@@ -113,7 +124,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Start your day with a fresh and delicious loaf of bread. It's soft, fluffy, and perfect for toasting or making sandwiches. Savor the aroma and delight in every bite.",
       "price": 3,
-      "image": "https://cdn-icons-png.flaticon.com/512/883/883561.png"
+      "image": "https://cdn-icons-png.flaticon.com/512/883/883561.png",
+      "count": 1
     },
     {
       "id": "13",
@@ -122,7 +134,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Enjoy the goodness of milk, a nutritious beverage loved by all ages. It's rich in calcium, vitamins, and minerals. Use it in your morning cereal, coffee, or for baking delicious treats.",
       "price": 2.5,
-      "image": "https://i.imgur.com/Sh9ElYu.png"
+      "image": "https://i.imgur.com/Sh9ElYu.png",
+      "count": 1
     },
     {
       "id": "14",
@@ -131,7 +144,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Stock up on this versatile and essential pantry staple. Rice is a versatile grain that pairs well with a variety of dishes. It's a must-have for your favorite recipes and meals.",
       "price": 4,
-      "image": "https://cdn-icons-png.flaticon.com/128/9873/9873609.png"
+      "image": "https://cdn-icons-png.flaticon.com/128/9873/9873609.png",
+      "count": 1
     },
     {
       "id": "15",
@@ -140,7 +154,8 @@ class ShopData extends ChangeNotifier {
       "description":
           "Add protein and nutrients to your diet with these fresh eggs. They are a versatile ingredient and a key component in numerous recipes. From omelets to baking, eggs are a kitchen staple.",
       "price": 2.5,
-      "image": "https://cdn-icons-png.flaticon.com/128/2168/2168010.png"
+      "image": "https://cdn-icons-png.flaticon.com/128/2168/2168010.png",
+      "count": 1
     }
   ];
 }
