@@ -1,4 +1,4 @@
-import 'package:ui_compare/common/product.dart';
+import 'package:ui_compare/components/product.dart';
 
 import 'common/common.dart';
 
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Shop(),
+      body: Splash(),
     );
   }
 }

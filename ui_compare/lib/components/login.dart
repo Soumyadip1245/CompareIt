@@ -155,6 +155,9 @@ class _LoginState extends State<Login> {
                             width: width * 0.8,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
                                     padding: const EdgeInsets.only(
                                         top: 10,
                                         bottom: 10,
@@ -166,10 +169,13 @@ class _LoginState extends State<Login> {
                                     loginbutton();
                                   }
                                 },
-                                child: const TextDesign(
-                                  text: "Login",
-                                  size: 20,
-                                  color: Colors.white,
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  child: TextDesign(
+                                    text: "Login",
+                                    size: 25,
+                                    color: Colors.white,
+                                  ),
                                 )),
                           ),
                           const SizedBox(
@@ -179,6 +185,9 @@ class _LoginState extends State<Login> {
                             width: width * 0.8,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
                                     padding: const EdgeInsets.only(
                                         top: 10,
                                         bottom: 10,
@@ -190,16 +199,19 @@ class _LoginState extends State<Login> {
                                     registerbutton();
                                   }
                                 },
-                                child: const TextDesign(
-                                  text: "Register",
-                                  size: 20,
-                                  color: Colors.white,
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  child: TextDesign(
+                                    text: "Register",
+                                    size: 25,
+                                    color: Colors.white,
+                                  ),
                                 )),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const TextDesign(text: "OR", size: 28),
+                          const TextDesign(text: "OR", size: 25),
                           const SizedBox(
                             height: 20,
                           ),
@@ -207,6 +219,8 @@ class _LoginState extends State<Login> {
                             width: width * 0.8,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40)),
                                 padding: const EdgeInsets.only(
                                     top: 10, bottom: 10, left: 70, right: 70),
                                 backgroundColor: Colors.white,
@@ -218,20 +232,24 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 signin();
                               },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    'assests/images/google.png', // Replace with your own Google logo asset
-                                    height: 24,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text(
-                                    'Sign in with Google',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black),
-                                  ),
-                                ],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                      'assests/images/google.png', // Replace with your own Google logo asset
+                                      height: 25,
+                                    ),
+                                    const SizedBox(width: 20),
+                                    const TextDesign(
+                                      text: "Sign in with Google",
+                                      size: 25,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           )

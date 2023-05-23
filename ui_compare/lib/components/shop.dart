@@ -28,9 +28,14 @@ class _ShopState extends State<Shop> {
             children: [
               Row(
                 children: [
-                  const Icon(
-                    Icons.arrow_back,
-                    size: 28,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/landing');
+                    },
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 28,
+                    ),
                   ),
                   const Spacer(),
                   Badge(

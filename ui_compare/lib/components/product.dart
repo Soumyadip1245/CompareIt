@@ -39,14 +39,19 @@ class _ProductState extends State<Product> {
                     ),
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/cart');
-                    },
-                    child: const Icon(
-                      Icons.shopping_cart,
-                      size: 28,
-                      color: Colors.white,
+                  Badge(
+                    child: InkWell(
+                      onTap: () {},
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/cart');
+                        },
+                        child: const Icon(
+                          Icons.shopping_bag_outlined,
+                          size: 35,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   )
                 ],
