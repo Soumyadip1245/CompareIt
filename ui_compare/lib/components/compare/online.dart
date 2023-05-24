@@ -11,10 +11,31 @@ class Online extends StatefulWidget {
 }
 
 class _OnlineState extends State<Online> {
+  void initState() {
+    getData();
+  }
+
+  List<dynamic> items = [];
+  void getData() async {
+    var url = "https://new-upload.vercel.app/flutter/ecommerce";
+    var jsondata = {"searchQuery": "Boat Headphones"};
+    var encodeBody = json.encode(jsondata);
+    var urlparse = Uri.parse(url);
+    var response = await http.post(
+      urlparse,
+      body: encodeBody,
+      headers: {"Content-Type": "application/json"},
+    );
+    var data = jsonDecode(response.body);
+    setState(() {
+      items = data['products'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 2,
+        itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -33,7 +54,7 @@ class _OnlineState extends State<Online> {
                         borderRadius: BorderRadius.circular(20),
                         color: Color(0xFFFFeceff2),
                       ),
-                      child: Image.asset("assests/images/headphone.png"),
+                      child: Image.network(items[index]['image']),
                     ),
                     SizedBox(
                       width: 20,
@@ -43,7 +64,7 @@ class _OnlineState extends State<Online> {
                       children: [
                         Flexible(
                           child: TextDesign(
-                            text: "Iphone 14 Pro Max",
+                            text: items[index]['title'].split(" ")[1],
                             size: 20,
                             bold: "y",
                           ),
@@ -52,7 +73,7 @@ class _OnlineState extends State<Online> {
                           height: 10,
                         ),
                         TextDesign(
-                          text: "Rs. 1200000",
+                          text: items[index]['price'],
                           size: 18,
                           color: Colors.grey,
                         ),
@@ -65,11 +86,11 @@ class _OnlineState extends State<Online> {
                           height: 40,
                           child: Center(
                               child: TextDesign(
-                            text: "Amazon",
+                            text: items[index]['from'],
                             size: 15,
                             bold: "y",
                           )),
-                        )
+                        ),
                       ],
                     ),
                   ],
