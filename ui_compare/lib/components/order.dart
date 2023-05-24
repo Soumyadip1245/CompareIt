@@ -34,7 +34,7 @@ class _OrderState extends State<Order> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.pushNamed(context, '/landing');
                               },
                               child: const Icon(
                                 Icons.arrow_back,
@@ -67,55 +67,68 @@ class _OrderState extends State<Order> {
                     SizedBox(
                       height: 20,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: ListView.builder(
-                            itemCount: streamSnapshot
-                                .data!.docs.first['orders'].length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                elevation: 2,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ListTile(
-                                    leading: Container(
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFFF5F6F9),
+                    streamSnapshot.data!.docs.first['orders'].length == 0
+                        ? Column(
+                            children: [
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Center(
+                                  child:
+                                      Image.asset("assests/images/order.png")),
+                            ],
+                          )
+                        : Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: ListView.builder(
+                                  itemCount: streamSnapshot
+                                      .data!.docs.first['orders'].length,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10)),
-                                      width: 100,
-                                      padding: EdgeInsets.all(5),
-                                      child: Image.network(
-                                          orders![index]['image']),
-                                    ),
-                                    title: TextDesign(
-                                      text: "${orders[index]['name']}",
-                                      size: 20,
-                                      color: Colors.black,
-                                      bold: "y",
-                                    ),
-                                    subtitle: TextDesign(
-                                      text:
-                                          "Rs. ${orders[index]['price']} x ${orders[index]['count']}",
-                                      size: 15,
-                                      color: Colors.grey,
-                                    ),
-                                    trailing: TextDesign(
-                                        text: "ID: ${orders[index]['id']}",
-                                        size: 18),
-                                  ),
-                                ),
-                              );
-                            }),
-                      ),
-                    )
+                                              BorderRadius.circular(20)),
+                                      elevation: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ListTile(
+                                          leading: Container(
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFF5F6F9),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            width: 100,
+                                            padding: EdgeInsets.all(5),
+                                            child: Image.network(
+                                                orders![index]['image']),
+                                          ),
+                                          title: TextDesign(
+                                            text: "${orders[index]['name']}",
+                                            size: 20,
+                                            color: Colors.black,
+                                            bold: "y",
+                                          ),
+                                          subtitle: TextDesign(
+                                            text:
+                                                "Rs. ${orders[index]['price']} x ${orders[index]['count']}",
+                                            size: 15,
+                                            color: Colors.grey,
+                                          ),
+                                          trailing: TextDesign(
+                                              text:
+                                                  "ID: ${orders[index]['id']}",
+                                              size: 18),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          )
                   ],
                 );
               } else {
-                return CircularProgressIndicator();
+                return Center(child: Image.asset("assests/images/order.png"));
               }
             },
           );
