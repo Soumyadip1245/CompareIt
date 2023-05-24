@@ -1,11 +1,8 @@
 import 'package:ui_compare/common/common.dart';
 
 class CartState extends ChangeNotifier {
-  UserProvider user = UserProvider();
   List<Map<String, dynamic>> list = [];
-
   void addCart(Map<String, dynamic> product) {
-    // print(user.email);
     if (!list.contains(product)) {
       list.add(product);
     }
