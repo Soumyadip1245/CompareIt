@@ -9,6 +9,14 @@ class Shop extends StatefulWidget {
 }
 
 class _ShopState extends State<Shop> {
+  String? search;
+  void searchProduct(String query) {
+    setState(() {
+      search = query;
+    });
+    print(search);
+  }
+
   List<dynamic> color = [
     const Color(0xFFFFFB7882),
     const Color(0xFFFF3d82AE),
@@ -67,13 +75,10 @@ class _ShopState extends State<Shop> {
                 bold: "y",
               ),
               TextInput(
-                text: "Search Products",
-                icon: Icons.search,
-                controller: searchcontroller,
-                onChanged: (value) {
-                  setState(() {});
-                },
-              ),
+                  text: "Search Products",
+                  icon: Icons.search,
+                  controller: searchcontroller,
+                  onChanged: searchProduct),
               const SizedBox(height: 10),
               const TabBar(
                 labelColor: Colors.black,
@@ -88,11 +93,14 @@ class _ShopState extends State<Shop> {
                 child: TabBarView(
                   children: [
                     SingleChildScrollView(
-                        child: Ecommerce(search: searchcontroller)),
+                        child: Ecommerce(
+                            search: search, onSearchChanged: searchProduct)),
                     SingleChildScrollView(
-                        child: Grocery(search: searchcontroller)),
+                        child: Grocery(
+                            search: search, onSearchChanged: searchProduct)),
                     SingleChildScrollView(
-                        child: Clothing(search: searchcontroller)),
+                        child: Clothing(
+                            search: search, onSearchChanged: searchProduct)),
                   ],
                 ),
               ),

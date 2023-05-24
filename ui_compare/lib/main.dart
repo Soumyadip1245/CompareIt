@@ -1,5 +1,3 @@
-import 'package:ui_compare/components/product.dart';
-
 import 'common/common.dart';
 
 Future<void> main() async {
@@ -51,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Splash(),
+      body: Shop(),
     );
   }
 }

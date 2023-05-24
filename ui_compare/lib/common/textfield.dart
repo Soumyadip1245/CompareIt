@@ -4,7 +4,7 @@ class TextInput extends StatefulWidget {
   final IconData? icon;
   final String text;
   final TextEditingController? controller;
-  final Function(String)? onChanged;
+  final ValueChanged<String>? onChanged;
   TextInput({required this.text, this.icon, this.controller, this.onChanged});
 
   @override

@@ -25,3 +25,4 @@ export '../components/shop/grocery.dart';
 export '../common/shopcards.dart';
 export '../../state/shopchange.dart';
 export '../state/cartstate.dart';
+export 'package:ui_compare/components/product.dart';

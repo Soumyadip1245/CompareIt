@@ -1,8 +1,10 @@
 import '../../common/common.dart';
 
 class Ecommerce extends StatefulWidget {
-  final TextEditingController? search;
-  const Ecommerce({this.search}) : super();
+  final String? search;
+  final Function(String) onSearchChanged; // New line
+
+  const Ecommerce({this.search, required this.onSearchChanged}) : super();
 
   @override
   State<Ecommerce> createState() => _EcommerceState();
@@ -16,13 +18,23 @@ class _EcommerceState extends State<Ecommerce> {
     const Color(0xFFFFD48984),
     const Color(0xFFFFE6B398),
   ];
+
+  @override
   void initState() {
     _filterProducts();
   }
 
+  @override
+  void didUpdateWidget(Ecommerce oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.search != oldWidget.search) {
+      _filterProducts();
+    }
+  }
+
   void _filterProducts() {
-    if (widget.search != null && widget.search!.text.isNotEmpty) {
-      final searchQuery = widget.search!.text.toLowerCase();
+    if (widget.search != null && widget.search!.isNotEmpty) {
+      final searchQuery = widget.search!.toLowerCase();
       ecommerceData = ShopData()
           .data
           .where((product) =>

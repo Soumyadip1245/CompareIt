@@ -1,8 +1,9 @@
 import '../../common/common.dart';
 
 class Clothing extends StatefulWidget {
-  final TextEditingController? search;
-  const Clothing({this.search});
+  final String? search;
+  final Function(String) onSearchChanged;
+  const Clothing({this.search, required this.onSearchChanged});
 
   @override
   State<Clothing> createState() => _ClothingState();
@@ -20,9 +21,17 @@ class _ClothingState extends State<Clothing> {
     _filterProducts();
   }
 
+  @override
+  void didUpdateWidget(Clothing oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.search != oldWidget.search) {
+      _filterProducts();
+    }
+  }
+
   void _filterProducts() {
-    if (widget.search != null && widget.search!.text.isNotEmpty) {
-      final searchQuery = widget.search!.text.toLowerCase();
+    if (widget.search != null && widget.search!.isNotEmpty) {
+      final searchQuery = widget.search!.toLowerCase();
       ecommerceData = ShopData()
           .data
           .where((product) =>
