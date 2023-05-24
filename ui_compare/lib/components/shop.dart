@@ -14,7 +14,6 @@ class _ShopState extends State<Shop> {
     setState(() {
       search = query;
     });
-    print(search);
   }
 
   List<dynamic> color = [

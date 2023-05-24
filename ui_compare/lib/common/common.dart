@@ -26,3 +26,4 @@ export '../common/shopcards.dart';
 export '../../state/shopchange.dart';
 export '../state/cartstate.dart';
 export 'package:ui_compare/components/product.dart';
+export 'package:ui_compare/state/usercart.dart';

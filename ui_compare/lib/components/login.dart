@@ -1,4 +1,5 @@
 import 'package:ui_compare/common/common.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Login extends StatefulWidget {
   const Login({
@@ -10,6 +11,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final CollectionReference compare =
+      FirebaseFirestore.instance.collection('users');
   var accountController = TextEditingController();
   var passwordController = TextEditingController();
 
@@ -19,7 +22,7 @@ class _LoginState extends State<Login> {
     auth
         .signInWithEmailAndPassword(
             email: accountController.text, password: passwordController.text)
-        .then((value) => {
+        .then((value) async => {
               QuickAlert.show(
                 context: context,
                 type: QuickAlertType.success,
@@ -30,6 +33,7 @@ class _LoginState extends State<Login> {
               }),
               Provider.of<UserProvider>(context, listen: false).setUserData(
                   accountController.text, accountController.text.split('@')[0]),
+              await getData(),
               clear(),
             })
         .catchError((e) => {
@@ -43,8 +47,34 @@ class _LoginState extends State<Login> {
             });
   }
 
+  Future<void> getData() async {
+    final QuerySnapshot querySnapshot =
+        await compare.where('email', isEqualTo: accountController.text).get();
+    if (querySnapshot.size > 0) {
+      final userDoc = querySnapshot.docs.first;
+      final userData = userDoc.data() as Map<String, dynamic>;
+      final email = userData['email'];
+      final orders = userData['orders'];
+      final userDataProvider = Provider.of<UserDetails>(context, listen: false);
+      userDataProvider.setUserData(accountController.text, orders);
+    }
+  }
+
+  Future<void> getData12(String email) async {
+    print("Email: $email");
+    final QuerySnapshot querySnapshot =
+        await compare.where('email', isEqualTo: email).get();
+    if (querySnapshot.size > 0) {
+      final userDoc = querySnapshot.docs.first;
+      final userData = userDoc.data() as Map<String, dynamic>;
+      final email = userData['email'];
+      final orders = userData['orders'];
+      final userDataProvider = Provider.of<UserDetails>(context, listen: false);
+      userDataProvider.setUserData(email, orders);
+    }
+  }
+
   Future<void> registerbutton() async {
-    print("Hello");
     auth
         .createUserWithEmailAndPassword(
             email: accountController.text, password: passwordController.text)
@@ -55,6 +85,10 @@ class _LoginState extends State<Login> {
                   text: 'Registration Successful',
                   showCancelBtn: false,
                   autoCloseDuration: const Duration(seconds: 5)),
+              compare
+                  .add({"email": accountController.text, "orders": []})
+                  .then((value) => print("Database"))
+                  .catchError((e) => print(e)),
               clear()
             })
         .catchError((e) => {
@@ -69,20 +103,37 @@ class _LoginState extends State<Login> {
             });
   }
 
-  void signin() {
+  Future<void> signin() async {
     googlesignin
         .signIn()
-        .then((value) => {
+        .then((value) async => {
               if (value != null)
                 {
                   Provider.of<UserProvider>(context, listen: false)
                       .setUserData(value.email, value.displayName ?? ""),
+                  await google_check(value.email),
                   Future.delayed(const Duration(seconds: 5), () {
                     Navigator.pushNamed(context, '/landing');
                   })
                 }
             })
         .catchError((e) => {print(e)});
+  }
+
+  Future<void> google_check(String email) async {
+    final QuerySnapshot querySnapshot =
+        await compare.where('email', isEqualTo: email).get();
+    if (querySnapshot.size > 0) {
+      final DocumentSnapshot userDoc = querySnapshot.docs.first;
+      final userData = userDoc.data() as Map<String, dynamic>;
+      final fetchedEmail = userData['email'];
+      final orders = userData['orders'];
+    } else {
+      await compare.add({"email": email, "orders": []});
+
+      print('User added to Firestore');
+    }
+    await getData12(email);
   }
 
   void clear() {
@@ -95,7 +146,8 @@ class _LoginState extends State<Login> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
+        body: Consumer<UserDetails>(builder: (context, data, child) {
+      return Container(
         width: double.infinity,
         color: const Color(0xFF5d69b3),
         height: height,
@@ -262,7 +314,7 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    }));
   }
 }

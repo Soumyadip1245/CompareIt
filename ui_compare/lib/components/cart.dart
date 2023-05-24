@@ -10,7 +10,8 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Consumer<CartState>(builder: (context, data, child) {
+    return Scaffold(body: Consumer2<CartState, UserProvider>(
+        builder: (context, data, data1, child) {
       double total = 0;
       for (var i in data.list) {
         total = total + i['price'] * i['count'];
@@ -205,7 +206,9 @@ class _CartState extends State<Cart> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
                       backgroundColor: Colors.black),
-                  onPressed: () {},
+                  onPressed: () {
+                    data.payment(data1.email!);
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
                     child: TextDesign(
