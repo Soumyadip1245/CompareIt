@@ -5,7 +5,13 @@ class TextInput extends StatefulWidget {
   final String text;
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
-  TextInput({required this.text, this.icon, this.controller, this.onChanged});
+  final VoidCallback? onSubmit;
+  TextInput(
+      {required this.text,
+      this.icon,
+      this.controller,
+      this.onChanged,
+      this.onSubmit});
 
   @override
   State<TextInput> createState() => _TextInputState();
@@ -32,6 +38,8 @@ class _TextInputState extends State<TextInput> {
                     hintText: widget.text,
                     hintStyle: const TextStyle(fontSize: 20),
                     border: InputBorder.none),
+                textInputAction: TextInputAction.search,
+                onSubmitted: (_) => widget.onSubmit?.call(),
               ))),
     );
   }

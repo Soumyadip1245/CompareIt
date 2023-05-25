@@ -5,6 +5,8 @@ class OnlineShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Online");
+    return Scaffold(
+      body: Image.asset("assests/images/coming.png"),
+    );
   }
 }

@@ -8,12 +8,19 @@ class Compare extends StatefulWidget {
 }
 
 class _CompareState extends State<Compare> {
+  var search = TextEditingController();
+  void searchData() {
+    Provider.of<CompareState>(context, listen: false).getEcommerce(search.text);
+    search.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: Column(
+          body: Consumer<CompareState>(builder: (context, data, index) {
+        return Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(32),
@@ -52,11 +59,14 @@ class _CompareState extends State<Compare> {
               height: 10,
             ),
             TextInput(
-              text: "Search Products",
-              icon: Icons.search,
-            ),
+                text: "Search Products",
+                icon: Icons.search,
+                controller: search,
+                onSubmit: () {
+                  searchData();
+                }),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: TabBar(
                 labelColor: Colors.black,
                 tabs: [
@@ -70,13 +80,13 @@ class _CompareState extends State<Compare> {
               child: TabBarView(
                 children: [
                   Online(),
-                  SingleChildScrollView(child: OnlineShop()),
+                  OnlineShop(),
                 ],
               ),
             )
           ],
-        ),
-      ),
+        );
+      })),
     );
   }
 }

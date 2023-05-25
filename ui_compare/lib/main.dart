@@ -10,6 +10,8 @@ Future<void> main() async {
             create: (context) => UserProvider()),
         ChangeNotifierProvider<CartState>(create: (context) => CartState()),
         ChangeNotifierProvider<UserDetails>(create: (context) => UserDetails()),
+        ChangeNotifierProvider<CompareState>(
+            create: (context) => CompareState()),
       ],
       child: MaterialApp(
         home: const MyApp(),
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Online(),
+      body: Compare(),
     );
   }
 }
