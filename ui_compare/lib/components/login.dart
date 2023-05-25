@@ -112,6 +112,11 @@ class _LoginState extends State<Login> {
                   Provider.of<UserProvider>(context, listen: false)
                       .setUserData(value.email, value.displayName ?? ""),
                   await google_check(value.email),
+                  QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.success,
+                    text: "User Authenticated",
+                  ),
                   Future.delayed(const Duration(seconds: 5), () {
                     Navigator.pushNamed(context, '/landing');
                   })

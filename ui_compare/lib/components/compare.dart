@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ui_compare/common/common.dart';
 
 class Compare extends StatefulWidget {

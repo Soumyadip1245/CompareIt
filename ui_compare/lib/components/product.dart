@@ -164,6 +164,11 @@ class _ProductState extends State<Product> {
                           child: ElevatedButton(
                             onPressed: () {
                               cartState.addCart(map);
+                              QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.success,
+                                  text: "Added",
+                                  autoCloseDuration: Duration(seconds: 5));
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(

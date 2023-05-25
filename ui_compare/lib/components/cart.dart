@@ -208,6 +208,11 @@ class _CartState extends State<Cart> {
                       backgroundColor: Colors.black),
                   onPressed: () {
                     data.payment(data1.email!);
+                    QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.success,
+                        text: "Ordered Placed",
+                        autoCloseDuration: Duration(seconds: 2));
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),

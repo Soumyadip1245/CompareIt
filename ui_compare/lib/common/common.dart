@@ -31,3 +31,4 @@ export '../components/compare/online.dart';
 export '../components/compare/onlineshop.dart';
 export 'dart:convert';
 export 'package:ui_compare/state/comparestate.dart';
+export 'package:ui_compare/common/alert.dart';
