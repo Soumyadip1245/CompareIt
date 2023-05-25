@@ -47,8 +47,11 @@ class Splash extends StatelessWidget {
               const CircularProgressIndicator(
                 color: Colors.purple,
               ),
-              const SizedBox(
-                height: 10,
+              const SizedBox(height: 40),
+              TextDesign(
+                text: "Powered by Soumyadip Das",
+                size: 15,
+                color: Colors.grey,
               ),
             ],
           ),
