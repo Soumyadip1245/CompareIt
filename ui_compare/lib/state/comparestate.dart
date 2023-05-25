@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class CompareState extends ChangeNotifier {
   List<dynamic> items = [];
   void getEcommerce(String search) async {
-    var url = "https://compareit-wgnt.onrender.com/flutter/ecommerce";
+    var url = "https://new-upload.vercel.app/flutter/ecommerce";
     var jsondata = {"searchQuery": search};
     var encodeBody = json.encode(jsondata);
     var urlparse = Uri.parse(url);

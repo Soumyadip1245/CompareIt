@@ -5,7 +5,7 @@ class Splash extends StatelessWidget {
     super.key,
   });
   Future<void> gettimer(BuildContext context) async {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 10), () {
       Navigator.pushNamed(context, '/login');
     });
   }
@@ -27,8 +27,11 @@ class Splash extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Image.asset(
-                'assests/images/main.jpg',
+                'assests/images/splash.gif',
                 fit: BoxFit.cover,
+              ),
+              SizedBox(
+                height: 40,
               ),
               const TextDesign(
                 text: "CompareIt",

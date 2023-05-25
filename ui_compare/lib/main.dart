@@ -26,6 +26,7 @@ Future<void> main() async {
           '/payment': (context) => const Payment(),
           '/cart': (context) => const Cart(),
           '/product': (context) => Product(),
+          '/payment': (context) => const Payment(),
         },
         theme: ThemeData(
           primarySwatch: const MaterialColor(0xFF5d69b3, <int, Color>{
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Login(),
+      body: Splash(),
     );
   }
 }

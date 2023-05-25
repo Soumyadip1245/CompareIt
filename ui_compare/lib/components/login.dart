@@ -221,8 +221,27 @@ class _LoginState extends State<Login> {
                                         left: 70,
                                         right: 70)),
                                 onPressed: () {
-                                  if (accountController.text.isNotEmpty &&
-                                      passwordController.text.length > 6) {
+                                  if (accountController.text.isEmpty) {
+                                    QuickAlert.show(
+                                      context: context,
+                                      type: QuickAlertType.error,
+                                      title: 'Error',
+                                      text: 'Please enter an account email.',
+                                      autoCloseDuration:
+                                          const Duration(seconds: 5),
+                                    );
+                                  } else if (passwordController.text.length <=
+                                      6) {
+                                    QuickAlert.show(
+                                      context: context,
+                                      type: QuickAlertType.error,
+                                      title: 'Error',
+                                      text:
+                                          'Password should be at least 6 characters long.',
+                                      autoCloseDuration:
+                                          const Duration(seconds: 5),
+                                    );
+                                  } else {
                                     loginbutton();
                                   }
                                 },
