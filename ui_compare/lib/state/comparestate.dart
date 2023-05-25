@@ -14,7 +14,22 @@ class CompareState extends ChangeNotifier {
       headers: {"Content-Type": "application/json"},
     );
     var data = jsonDecode(response.body);
-    items = data['products'];
+    if (data['products'] == null) {
+      var url = "https://compareit-wgnt.onrender.com/flutter/ecommerce";
+      var jsondata = {"searchQuery": search};
+      var encodeBody = json.encode(jsondata);
+      var urlparse = Uri.parse(url);
+      var response = await http.post(
+        urlparse,
+        body: encodeBody,
+        headers: {"Content-Type": "application/json"},
+      );
+      var data = jsonDecode(response.body);
+      items = data['products'];
+    } else {
+      items = data['products'];
+    }
+
     notifyListeners();
   }
 }
