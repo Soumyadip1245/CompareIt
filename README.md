@@ -1,11 +1,5 @@
 # CompareIt
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Google Drive Video Player</title>
-  </head>
-  <body>
-    <iframe
+<iframe
       src="[https://drive.google.com/file/d/VIDEO_FILE_ID/preview](https://drive.google.com/file/d/1H71CIGBYKg152SwtO--LUEVk1K8ZCFE0/view?usp=sharing)"
       width="640"
       height="480"
@@ -14,5 +8,3 @@
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
     ></iframe>
-  </body>
-</html>
